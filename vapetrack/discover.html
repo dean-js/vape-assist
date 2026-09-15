@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VapeTrack – Discover</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="sidebar-root"></div>
+
+    <main class="main">
+      <div class="main-header">
+        <div>
+          <h1>Discover</h1>
+          <p>New hardware and liquids, ranked using your quiz answers and what you've logged so far.</p>
+        </div>
+      </div>
+
+      <section class="section" id="coils-for-you-section" style="display:none;">
+        <div class="section-header"><h2>Coils that fit your devices</h2></div>
+        <div class="grid grid-3" id="coils-for-you"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Liquids</h2>
+          <div class="chip-group" id="liquid-tabs">
+            <button class="chip selected" data-tab="for-you">For You</button>
+            <button class="chip" data-tab="top-rated">Top Rated</button>
+            <button class="chip" data-tab="new-in">New In</button>
+          </div>
+        </div>
+        <div class="grid grid-3" id="liquid-cards"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Hardware</h2>
+          <div class="chip-group" id="hardware-tabs">
+            <button class="chip selected" data-tab="for-you">For You</button>
+            <button class="chip" data-tab="top-rated">Top Rated</button>
+            <button class="chip" data-tab="new-in">New In</button>
+          </div>
+        </div>
+        <div class="grid grid-3" id="hardware-cards"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="js/pages/discover.js"></script>
+</body>
+</html>

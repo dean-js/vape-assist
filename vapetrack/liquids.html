@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VapeTrack – My Liquids</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="sidebar-root"></div>
+
+    <main class="main">
+      <div class="main-header">
+        <div>
+          <h1>My Liquids</h1>
+          <p>Log what you're vaping, rate it, and see how much is left.</p>
+        </div>
+        <button class="btn btn-primary" id="add-liquid-btn">+ Log Liquid</button>
+      </div>
+
+      <section class="section panel" id="add-liquid-panel" style="display:none;">
+        <h2 style="margin-bottom:16px;">Log a liquid</h2>
+        <form id="add-liquid-form">
+          <div class="field">
+            <label>Pick from catalogue (optional)</label>
+            <select name="catalogId" id="liquid-catalog-select">
+              <option value="">-- Custom liquid --</option>
+            </select>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" name="name" id="liquid-name" required />
+            </div>
+            <div class="field">
+              <label>Brand</label>
+              <input type="text" name="brand" id="liquid-brand" />
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label>Flavour category</label>
+              <select name="flavourCategory" id="liquid-category">
+                <option value="fruit">Fruit</option>
+                <option value="menthol">Menthol</option>
+                <option value="tobacco">Tobacco</option>
+                <option value="dessert">Dessert</option>
+                <option value="drinks">Drinks</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Nicotine (mg)</label>
+              <select name="nicotineMg" id="liquid-nicotine">
+                <option value="0">0</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Your rating</label>
+            <div class="chip-group" id="rating-chips"></div>
+          </div>
+          <div class="field">
+            <label><input type="checkbox" name="wouldBuyAgain" style="width:auto;margin-right:8px;" />Would buy again</label>
+          </div>
+          <div class="field">
+            <label>Notes</label>
+            <textarea name="notes" rows="2"></textarea>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" id="cancel-add-liquid">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>Recently Tried</h2></div>
+        <div class="row-list panel" id="liquids-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="js/pages/liquids.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VapeTrack – Profile</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="sidebar-root"></div>
+
+    <main class="main" style="max-width: 640px;">
+      <div class="main-header">
+        <div>
+          <h1>Profile</h1>
+          <p>Your quiz answers and app data.</p>
+        </div>
+      </div>
+
+      <section class="section panel" id="profile-summary"></section>
+
+      <section class="section panel">
+        <h2 style="margin-bottom:12px;">Manage your data</h2>
+        <p class="text-secondary" style="font-size:13px;margin-bottom:16px;">
+          Everything VapeTrack knows about you is stored only in this browser (localStorage) - nothing is sent anywhere.
+        </p>
+        <div style="display:flex; gap:12px;">
+          <a href="onboarding.html" class="btn btn-secondary">Retake the quiz</a>
+          <button class="btn btn-danger" id="reset-data-btn">Reset all data</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="js/pages/profile.js"></script>
+</body>
+</html>

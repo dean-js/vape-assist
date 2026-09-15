@@ -1,0 +1,48 @@
+/* ===========================================================
+   variables.css
+   ---------------------------------------------------------
+   Every colour, spacing value and font size the app uses lives
+   here as a CSS custom property (a "variable"). Changing the
+   look of the whole app means changing values in ONE place
+   instead of hunting through every file.
+   =========================================================== */
+
+:root {
+  /* --- Brand / accent colours --- */
+  --color-accent: #8b5cf6;       /* purple used for active nav, buttons */
+  --color-accent-soft: #a78bfa;  /* lighter purple for hover states */
+  --color-success: #34d399;      /* green - smoke free streak, in stock */
+  --color-warning: #fbbf24;      /* amber - coil getting old, low liquid */
+  --color-danger: #f87171;       /* red - coil overdue, out of stock */
+  --color-info: #38bdf8;         /* blue - informational badges */
+
+  /* --- Backgrounds (dark theme, matches the mockup) --- */
+  --bg-page: #0f1117;
+  --bg-panel: #171a23;
+  --bg-panel-alt: #1d212c;
+  --bg-hover: #232837;
+  --border-color: #2a2f3d;
+
+  /* --- Text --- */
+  --text-primary: #f4f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  /* --- Spacing scale (multiples of 4px) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* --- Radius / shadow --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  /* --- Font --- */
+  --font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+}

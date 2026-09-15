@@ -1,0 +1,9 @@
+{
+  "name": "vapetrack",
+  "version": "0.1.0",
+  "description": "Smoking-to-vaping transition dashboard - track hardware and liquids, get rule-based recommendations, compare UK retailer prices.",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 5173"
+  }
+}

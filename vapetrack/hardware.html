@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VapeTrack – My Hardware</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div id="sidebar-root"></div>
+
+    <main class="main">
+      <div class="main-header">
+        <div>
+          <h1>My Hardware</h1>
+          <p>Track the devices, pods, coils and accessories you actually own.</p>
+        </div>
+        <button class="btn btn-primary" id="add-hardware-btn">+ Add Hardware</button>
+      </div>
+
+      <section class="section panel" id="add-hardware-panel" style="display:none;">
+        <h2 style="margin-bottom:16px;">Add hardware</h2>
+        <form id="add-hardware-form">
+          <div class="grid grid-2">
+            <div class="field">
+              <label>Type</label>
+              <select name="type" id="hardware-type">
+                <option value="device">Device</option>
+                <option value="pod">Pod / Tank</option>
+                <option value="coil">Coil</option>
+                <option value="accessory">Accessory</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Pick from catalogue (optional)</label>
+              <select name="catalogId" id="hardware-catalog-select">
+                <option value="">-- Custom item --</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" name="name" id="hardware-name" required />
+            </div>
+            <div class="field">
+              <label>Brand</label>
+              <input type="text" name="brand" id="hardware-brand" />
+            </div>
+          </div>
+          <div class="grid grid-2" id="coil-only-fields" style="display:none;">
+            <div class="field">
+              <label>Resistance (Ω)</label>
+              <input type="number" step="0.1" name="resistanceOhms" id="hardware-resistance" />
+            </div>
+            <div class="field">
+              <label>Average life (days)</label>
+              <input type="number" name="avgLifeDays" id="hardware-avg-life" value="11" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Notes</label>
+            <textarea name="notes" rows="2"></textarea>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" id="cancel-add-hardware">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>Devices &amp; Pods</h2></div>
+        <div class="row-list panel" id="devices-list"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>Coils</h2></div>
+        <div class="row-list panel" id="coils-list"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header"><h2>Accessories</h2></div>
+        <div class="row-list panel" id="accessories-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="js/pages/hardware.js"></script>
+</body>
+</html>

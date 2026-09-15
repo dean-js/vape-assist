@@ -1,0 +1,352 @@
+/* ===========================================================
+   components.css
+   ---------------------------------------------------------
+   Reusable visual pieces: sidebar, cards, badges, buttons,
+   forms, progress ring. These class names are what the JS
+   "component" functions in js/components/ generate HTML for,
+   so this file and those files should be read side by side.
+   =========================================================== */
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border-color);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-2);
+}
+
+.sidebar-brand span.logo {
+  color: var(--color-accent);
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.sidebar-nav a:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.sidebar-nav a.active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: var(--space-4) var(--space-2) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ---------- Cards / panels ---------- */
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-panel);
+}
+
+.stat-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.stat-card .stat-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: var(--space-3);
+}
+
+.stat-card .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-card .stat-sub {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: var(--space-1);
+}
+
+/* ---------- Product / catalog cards ---------- */
+
+.product-card {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.product-card .product-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.product-card .product-meta {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.product-card .product-price {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.product-card .product-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* ---------- Badges / tags ---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-success { background: rgba(52, 211, 153, 0.15); color: var(--color-success); }
+.badge-warning { background: rgba(251, 191, 36, 0.15); color: var(--color-warning); }
+.badge-danger  { background: rgba(248, 113, 113, 0.15); color: var(--color-danger); }
+.badge-info    { background: rgba(56, 189, 248, 0.15); color: var(--color-info); }
+.badge-neutral { background: var(--bg-hover); color: var(--text-secondary); }
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary { background: var(--color-accent); color: #fff; }
+.btn-primary:hover { background: var(--color-accent-soft); }
+
+.btn-secondary { background: var(--bg-hover); color: var(--text-primary); border: 1px solid var(--border-color); }
+.btn-secondary:hover { background: var(--bg-panel-alt); }
+
+.btn-danger { background: rgba(248, 113, 113, 0.15); color: var(--color-danger); }
+
+.btn-full { width: 100%; }
+.btn-sm { padding: var(--space-1) var(--space-3); font-size: 12px; }
+
+/* ---------- Forms ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--space-4);
+}
+
+.field label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.field input,
+.field select,
+.field textarea {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  border: 1px solid var(--border-color);
+  background: var(--bg-panel-alt);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.chip.selected {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ---------- Progress ring (coil age) ---------- */
+
+.progress-ring-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring-wrap svg {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-track {
+  fill: none;
+  stroke: var(--bg-hover);
+  stroke-width: 8;
+}
+
+.progress-ring-value {
+  fill: none;
+  stroke: var(--color-success);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+.progress-ring-label {
+  position: absolute;
+  text-align: center;
+}
+
+.progress-ring-label .num {
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+}
+
+.progress-ring-label .unit {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* ---------- Empty states / banners ---------- */
+
+.banner {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(139, 92, 246, 0.05));
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--text-secondary);
+}
+
+/* ---------- Toast ---------- */
+
+#toast-root {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 50;
+}
+
+.toast {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ---------- List rows (hardware / liquid tables) ---------- */
+
+.row-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.row-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.row-item:last-child {
+  border-bottom: none;
+}
+
+.row-item .row-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-item .row-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.row-item .row-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.stars {
+  color: var(--color-warning);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
