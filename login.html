@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VapeTrack – Sign In</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    /* Login gets its own centred layout instead of the sidebar shell. */
+    body.login-body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, rgba(139, 92, 246, 0.12), var(--bg-page) 60%);
+    }
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      padding: var(--space-8) var(--space-6);
+    }
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      justify-content: center;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: var(--space-2);
+    }
+    .login-brand span.logo { color: var(--color-accent); }
+    .login-sub {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+      margin-bottom: var(--space-6);
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: var(--space-5) 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+    .btn-google {
+      background: #fff;
+      color: #1f1f1f;
+      border: 1px solid var(--border-color);
+    }
+    .btn-google:hover { background: #f1f1f1; }
+  </style>
+</head>
+<body class="login-body">
+  <div class="panel login-card">
+    <div class="login-brand"><span class="logo">◆</span><span>VapeTrack</span></div>
+    <p class="login-sub">Track your switch from smoking to vaping.</p>
+
+    <button type="button" class="btn btn-google btn-full" id="google-btn">
+      <span>Continue with Google</span>
+    </button>
+    <p class="text-muted" id="google-note" style="font-size:11px; text-align:center; margin-top:6px;">
+      Not wired up yet - needs a backend to verify Google sign-in safely. See README.
+    </p>
+
+    <div class="divider">or continue with email</div>
+
+    <form id="login-form">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" id="login-name" required placeholder="What should we call you?" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" id="login-email" required placeholder="you@example.com" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Continue</button>
+    </form>
+
+    <p class="text-muted" style="font-size:11px; text-align:center; margin-top:16px;">
+      This is a local placeholder account, stored only in this browser. No password, nothing sent anywhere.
+    </p>
+  </div>
+
+  <div id="toast-root"></div>
+  <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>

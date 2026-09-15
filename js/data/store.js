@@ -19,6 +19,7 @@
  */
 
 const KEYS = {
+  account: "vt_account",
   profile: "vt_profile",
   hardware: "vt_hardware",
   liquids: "vt_liquids",
@@ -46,6 +47,34 @@ function writeKey(key, value) {
 /** Small helper so ids look like "hw_1699999999999_412" - unique enough for a local app. */
 function makeId(prefix) {
   return `${prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+}
+
+/* =========================== Account =========================== */
+/**
+ * The "account" is separate from the quiz "profile" below: account =
+ * who's signed in (name, email, how they signed up), profile = their
+ * smoking/vaping preferences from the quiz. Splitting them keeps the
+ * eventual real-auth swap contained to just these functions.
+ *
+ * IMPORTANT: this is a LOCAL-ONLY placeholder, not real authentication.
+ * There's no password, no server checking anything, and "Continue with
+ * Google" doesn't talk to Google - it's UI groundwork for real OAuth
+ * once a backend exists to verify tokens safely. See the "Accounts"
+ * section in README.md for the real-auth plan.
+ */
+
+export async function getAccount() {
+  return readKey(KEYS.account, null);
+}
+
+export async function saveAccount({ name, email, provider = "email" }) {
+  const account = { name, email, provider, createdAt: new Date().toISOString() };
+  writeKey(KEYS.account, account);
+  return account;
+}
+
+export async function clearAccount() {
+  localStorage.removeItem(KEYS.account);
 }
 
 /* =========================== Profile =========================== */

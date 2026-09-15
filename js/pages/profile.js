@@ -7,20 +7,39 @@
 
 import { initPage } from "../components/shared.js";
 import { showToast } from "../components/toast.js";
-import { getProfile, resetAllData, daysSince } from "../data/store.js";
+import { getAccount, clearAccount, getProfile, resetAllData, daysSince } from "../data/store.js";
 
 async function render() {
   await initPage("profile");
+  const account = await getAccount();
   const profile = await getProfile();
+
+  document.getElementById("account-summary").innerHTML = renderAccount(account);
   document.getElementById("profile-summary").innerHTML = profile ? renderProfile(profile) : renderNoProfile();
 
+  document.getElementById("logout-btn").addEventListener("click", async () => {
+    await clearAccount();
+    window.location.href = "login.html";
+  });
+
   document.getElementById("reset-data-btn").addEventListener("click", async () => {
-    const confirmed = window.confirm("This clears every device, liquid, wishlist item and quiz answer you've logged. Continue?");
+    const confirmed = window.confirm("This clears your account, every device, liquid, wishlist item and quiz answer you've logged. Continue?");
     if (!confirmed) return;
     await resetAllData();
     showToast("All data cleared");
-    window.location.href = "onboarding.html";
+    window.location.href = "login.html";
   });
+}
+
+function renderAccount(account) {
+  if (!account) return "";
+  return `
+    <h2 style="margin-bottom:16px;">Account</h2>
+    <div class="row-list">
+      ${row("Name", account.name)}
+      ${row("Email", account.email)}
+      ${row("Signed up with", account.provider === "google" ? "Google" : "Email")}
+    </div>`;
 }
 
 function renderProfile(profile) {

@@ -1,95 +1,109 @@
 # VapeTrack
 
-A dashboard app to help someone transitioning from smoking to vaping: track your hardware and liquids, log likes/dislikes, keep an eye on coil age, and get simple rule-based recommendations for what to try next - including UK retailer price comparisons.
+A dashboard app for people switching from smoking to vaping: track your hardware and e-liquids, log what you like and don't, keep an eye on coil age, and get rule-based recommendations for what to try next, including UK retailer price comparisons.
 
-This is a **v1 prototype**: plain HTML/CSS/JavaScript, no build tools, no backend. All your data lives in your browser's `localStorage`. Section 5 below explains exactly how to grow this into something with a real backend and database later, without a rewrite.
+**Status:** early prototype (v0.2.0). Frontend only, no backend yet. All data is stored locally in your browser.
 
-## Why plain HTML/CSS/JS, written like components
+---
 
-You're learning HTML and CSS, so the whole app is just that - no React, no build step, nothing to install to get it running. But the JavaScript is deliberately organised the way a React app would be, as a bridge toward that later:
+## Current features
 
-- Every file in `js/components/` is a function that takes some data in and returns an HTML string - the same "props in, markup out" idea as a React component, just written by hand.
-- Every file in `js/pages/` is a "controller" for one HTML page: it fetches data and fills in the blanks that page's HTML already has.
-- `js/data/store.js` is the *only* place that touches `localStorage`. Every page goes through it. That one rule is what makes it possible to swap in a real backend later (see below) by editing a single file.
+**Accounts**
+Local placeholder sign-up (name + email, stored in this browser only). A "Continue with Google" button is present but not wired up yet, see [Roadmap](#roadmap).
 
-Read the comment at the top of `js/data/store.js` first - it explains this in more detail.
+**Onboarding quiz**
+A short quiz on smoking history, nicotine preference, flavour interests, device type and budget, used to seed your first recommendations.
 
-## Running it locally
+**Dashboard**
+Smoke-free days, estimated money saved, current device/pod/liquid at a glance, a live coil-age progress ring, wishlist preview, personalised recommendations, and a best-deals list.
 
-Because the JavaScript is split into ES modules (`import`/`export`), you can't just double-click `index.html` - browsers block module imports when a page is opened directly from disk (`file://`). You need a tiny local web server. Two easy options:
+**My Hardware**
+Log devices, pods, coils and accessories. Coils show days used vs. average life, colour-coded (ok / warning / overdue), with one-click "replace" that retires the old coil and logs a fresh one.
 
-**Option A - Node (recommended, matches package.json):**
-```bash
-npm start
-```
-This runs `npx serve .` and prints a local address, usually `http://localhost:5173`. Open that in your browser.
+**My Liquids**
+Log e-liquids you've tried, rate them 1-5, mark "would buy again," and track how much is left in the bottle.
 
-**Option B - Python (if you don't want to touch Node):**
-```bash
-python3 -m http.server 5173
-```
-Then open `http://localhost:5173`.
+**Wishlist**
+Save products you want to try, with the cheapest known in-stock retailer shown against each.
 
-Either way, always load the app through `http://localhost:...`, not `file://`.
+**Discover**
+Browse the catalogue with For You / Top Rated / New In tabs, plus a "coils that fit your devices" section driven by what you've actually logged.
+
+**Recommendation engine**
+Rule-based, no AI: scores catalogue items by how many tags they share with your quiz answers and what you've logged/rated highly. See `js/recommendations.js`.
+
+**Known simplifications:** retailer prices in `js/data/catalog.js` are fictional placeholders (no UK vape retailer offers a public price API yet), community ratings are seeded numbers rather than real multi-user reviews, and "money saved" is a rough estimate from your quiz answers rather than real purchase data.
+
+---
+
+## Updates
+
+### v0.2.0
+- Added local placeholder accounts (`login.html`): name + email sign-up, gates the whole app, "Continue with Google" UI in place ahead of real OAuth
+- Sidebar now shows the signed-in user's initials/name and a log out link
+- Dashboard greeting is personalised with the account's first name
+- Profile page shows account details alongside quiz answers
+- Fixed a project structure issue where files were nested one level too deep after the initial GitHub upload
+
+### v0.1.0
+- Initial prototype: dashboard, onboarding quiz, hardware/liquid logging, wishlist, discover with recommendations, profile/reset
+
+---
 
 ## Project structure
 
 ```
-vapetrack/
-├── index.html          Dashboard (home page)
-├── onboarding.html      Sign-up quiz
-├── hardware.html        My Hardware (devices, pods, coils, accessories)
-├── liquids.html         My Liquids (log, rate, review)
-├── wishlist.html         Wishlist
-├── discover.html         Browse + recommendations + retailer prices
-├── profile.html           Quiz answers + reset data
+vape-assist/
+├── login.html            Sign up / sign in (placeholder auth)
+├── index.html             Dashboard (home page)
+├── onboarding.html         Onboarding quiz
+├── hardware.html           My Hardware
+├── liquids.html            My Liquids
+├── wishlist.html            Wishlist
+├── discover.html            Browse + recommendations + retailer prices
+├── profile.html              Account + quiz answers + reset data
 ├── css/
-│   ├── variables.css      Colours, spacing, fonts - change the look here
-│   ├── base.css           Page skeleton (sidebar + content grid)
-│   └── components.css     Cards, badges, buttons, forms, progress ring
+│   ├── variables.css         Colours, spacing, fonts
+│   ├── base.css              Page skeleton (sidebar + content grid)
+│   └── components.css        Cards, badges, buttons, forms, progress ring
 └── js/
     ├── data/
-    │   ├── store.js          localStorage data layer (read this first)
-    │   ├── catalog.js         Sample hardware/liquid "database"
-    │   └── quiz-questions.js  Onboarding quiz definition
-    ├── recommendations.js     Rule-based recommendation engine
-    ├── components/            Reusable render functions (sidebar, cards, etc.)
-    └── pages/                 One controller file per HTML page
+    │   ├── store.js             localStorage data layer (read this first)
+    │   ├── catalog.js            Sample hardware/liquid "database"
+    │   └── quiz-questions.js     Onboarding quiz definition
+    ├── recommendations.js        Rule-based recommendation engine
+    ├── components/                Reusable render functions (sidebar, cards, etc.)
+    └── pages/                     One controller file per HTML page
 ```
 
-## How this maps to the original feature list
+## Running it locally
 
-| Feature | Where it lives |
-|---|---|
-| Accounts & onboarding | `onboarding.html` + `js/pages/onboarding.js`, data in `js/data/quiz-questions.js` |
-| Hardware database | `hardware.html` - log devices/pods/coils/accessories, coil age tracking |
-| Liquid database | `liquids.html` - log, rate 1-5, "would buy again", remaining % |
-| Dashboard | `index.html` - current setup, coil tracker, wishlist preview, recommendations, deals |
-| Wishlist | `wishlist.html` |
-| Community ratings | Seeded per-item in `js/data/catalog.js` (`communityRating`, `communityReviewCount`); your own rating is stored separately via `rateLiquid()` in `store.js` |
-| Retail integration | `retailers` array on each catalogue item; **sample/placeholder prices only**, see the warning at the top of `catalog.js` |
-| Rule-based recommendations | `js/recommendations.js` - scores catalogue items by tag overlap with your quiz answers + logged/rated items |
+The JS is split into ES modules, so open it through a local server, not by double-clicking the HTML file:
 
-Note: the original spec's "Community" and "Deals & Retailers" as separate nav sections, plus account settings, are folded into Discover/Profile for this v1 to keep the page count manageable - splitting them out later is just adding another HTML page + page.js file following the same pattern as the others.
+```bash
+npm start
+# or: python3 -m http.server 5173
+```
 
-## Known simplifications in this prototype
+Then open the printed `localhost` address. In VS Code, the Live Server extension does the same thing with auto-refresh on save, right-click `index.html` → "Open with Live Server."
 
-- **Retailer prices are fictional placeholders.** UK vape retailers don't generally expose a public price/stock API, so real integration would need either an affiliate product feed from specific retailers, or your own scraper (and you'd need to check each site's terms of service / robots.txt before doing that).
-- **"Community ratings" are seeded numbers**, not real reviews from real other users - there's no multi-user backend yet, so this is one person's app.
-- **"Money saved" and "smoke free days"** are rough estimates from your quiz answers (average UK cost-per-cigarette × days since you completed onboarding), not real purchase data.
+---
 
-## Growing this into a real (multi-user, backend-powered) app
+## Roadmap
 
-Everything above is written so this is an additive change, not a rewrite:
+**Real authentication (Google + email)**
+The current sign-up is a local placeholder (see the comment on `saveAccount()` in `js/data/store.js`), no password, nothing sent anywhere. Real Google sign-in needs a backend to verify the token Google issues, so it's planned alongside the backend below rather than before it. Real email sign-up would add password hashing and a proper session, also backend work.
 
-1. Build a small backend (Node + Express is a natural next step since you're already in JavaScript) with routes like `GET /api/hardware`, `POST /api/liquids`, etc., backed by a real database (SQLite is the easiest to start with, Postgres if you want it production-ready).
-2. Open `js/data/store.js` and change the *inside* of each function from `localStorage.getItem(...)` to `fetch('/api/...')`. Because every function already returns a Promise and every page already calls them with `await`, nothing in `js/pages/` or `js/components/` needs to change.
-3. Add real authentication (sign up/log in) so hardware, liquids and ratings are tied to a real account instead of "whoever is using this browser".
-4. Replace the placeholder `retailers` data in `catalog.js` with a real source (affiliate feed or your own scraper), and consider moving the whole catalogue into the database too so it can be updated without editing code.
-5. Once ratings come from real different people, "community rating" becomes a genuine aggregate (average of all users' ratings for that item) computed by the backend instead of a fixed seeded number.
+**Backend + database**
+Planned as Node.js + Express, with SQLite to start (Postgres later if this goes further). The frontend is already written to make this an additive change rather than a rewrite:
 
-## Next steps if you're using this to learn
+1. Build API routes mirroring the functions already in `js/data/store.js` (`GET/POST /api/hardware`, `/api/liquids`, `/api/wishlist`, `/api/account`, etc.), backed by real tables instead of localStorage.
+2. Edit the *inside* of each `store.js` function to call `fetch('/api/...')` instead of `localStorage`. Every function already returns a Promise and every caller already `await`s it, so nothing in `js/pages/` or `js/components/` needs to change.
+3. Add real sessions/auth so data is tied to an actual account, not "whoever has this browser open."
+4. Move `js/data/catalog.js` into the database too, and replace the placeholder `retailers` data with a real source (an affiliate product feed, or a scraper that respects each retailer's terms of service).
+5. Once ratings come from real different users, "community rating" becomes a genuine aggregate computed by the backend instead of a fixed seeded number.
 
-- Start by reading `js/data/store.js` and `js/data/catalog.js` end to end - almost everything else in the app is built on top of those two files.
-- Try adding a new stat card to the dashboard, or a new quiz question, before touching the recommendation engine - it's a smaller, self-contained change to practice with.
-- The `js/components/` functions are a good place to see the "props in, HTML out" pattern before you try the real thing in React.
+**Other ideas not yet scheduled**
+- Split "Community" and "Deals & Retailers" into their own nav pages instead of folding them into Discover
+- Push notifications / reminders for overdue coils
+- Puff-count tracking if a compatible device ever exposes that data

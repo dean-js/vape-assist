@@ -21,6 +21,8 @@
         </div>
       </div>
 
+      <section class="section panel" id="account-summary"></section>
+
       <section class="section panel" id="profile-summary"></section>
 
       <section class="section panel">
@@ -28,8 +30,9 @@
         <p class="text-secondary" style="font-size:13px;margin-bottom:16px;">
           Everything VapeTrack knows about you is stored only in this browser (localStorage) - nothing is sent anywhere.
         </p>
-        <div style="display:flex; gap:12px;">
+        <div style="display:flex; gap:12px; flex-wrap: wrap;">
           <a href="onboarding.html" class="btn btn-secondary">Retake the quiz</a>
+          <button class="btn btn-secondary" id="logout-btn">Log out</button>
           <button class="btn btn-danger" id="reset-data-btn">Reset all data</button>
         </div>
       </section>

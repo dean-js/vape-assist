@@ -12,6 +12,7 @@ import { renderStatCard } from "../components/statCard.js";
 import { renderCoilRing } from "../components/coilRing.js";
 import { renderProductCard } from "../components/productCard.js";
 import {
+  getAccount,
   getHardware,
   getLiquids,
   getWishlist,
@@ -29,7 +30,7 @@ const CIGARETTES_PER_DAY_MIDPOINT = { "1-5": 3, "6-15": 10, "16-25": 20, "25+": 
 async function render() {
   const profile = await initPage("dashboard");
   document.getElementById("onboarding-banner").innerHTML = renderOnboardingBanner(profile);
-  setGreeting();
+  await setGreeting();
 
   const [hardware, liquids, wishlist, personalRatings] = await Promise.all([
     getHardware(),
@@ -46,10 +47,12 @@ async function render() {
   wireWishlistButtons(() => render());
 }
 
-function setGreeting() {
+async function setGreeting() {
   const hour = new Date().getHours();
   const label = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-  document.getElementById("greeting").textContent = `${label} 👋`;
+  const account = await getAccount();
+  const firstName = account?.name?.split(" ")[0];
+  document.getElementById("greeting").textContent = firstName ? `${label}, ${firstName} 👋` : `${label} 👋`;
 }
 
 function renderStatCards(profile, hardware, liquids) {

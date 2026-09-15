@@ -8,17 +8,29 @@
 
 import { mountSidebar } from "./sidebar.js";
 import { showToast } from "./toast.js";
-import { getProfile, addToWishlist, removeFromWishlist, isWishlisted } from "../data/store.js";
+import { getAccount, getProfile, addToWishlist, removeFromWishlist, isWishlisted } from "../data/store.js";
 
 /**
- * Call once at the top of every page.js file.
+ * Call once at the top of every page.js file (login.js is the one
+ * exception - it can't require an account, since it's how you get one).
+ *
+ * Order matters: no account -> straight to login.html, account but no
+ * quiz -> either redirected to onboarding.html (if requireOnboarding)
+ * or shown the "take the quiz" banner instead.
+ *
  * @param {string} activePageId - matches an id in sidebar.js's NAV_ITEMS
  * @param {object} [options]
  * @param {boolean} [options.requireOnboarding] - if true, redirect to
  *   onboarding.html when the user hasn't completed the quiz yet
  */
 export async function initPage(activePageId, options = {}) {
-  mountSidebar(activePageId);
+  const account = await getAccount();
+  if (!account) {
+    window.location.href = "login.html";
+    return null;
+  }
+
+  mountSidebar(activePageId, account);
 
   if (options.requireOnboarding) {
     const profile = await getProfile();
