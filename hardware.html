@@ -30,7 +30,8 @@
               <label>Type</label>
               <select name="type" id="hardware-type">
                 <option value="device">Device</option>
-                <option value="pod">Pod / Tank</option>
+                <option value="pod">Pod (built-in coil)</option>
+                <option value="tank">Tank</option>
                 <option value="coil">Coil</option>
                 <option value="accessory">Accessory</option>
               </select>
@@ -52,12 +53,15 @@
               <input type="text" name="brand" id="hardware-brand" />
             </div>
           </div>
-          <div class="grid grid-2" id="coil-only-fields" style="display:none;">
+          <div class="grid grid-2" id="resistance-field" style="display:none;">
             <div class="field">
               <label>Resistance (Ω)</label>
-              <input type="number" step="0.1" name="resistanceOhms" id="hardware-resistance" />
+              <!-- If the catalogue item has known variants (e.g. OXVA EZ Pods come in
+                   0.4/0.6/0.8Ω) you pick from a dropdown instead of typing a number. -->
+              <select id="hardware-resistance-select" style="display:none;"></select>
+              <input type="number" step="0.05" name="resistanceOhms" id="hardware-resistance" placeholder="e.g. 0.6" />
             </div>
-            <div class="field">
+            <div class="field" id="avg-life-field" style="display:none;">
               <label>Average life (days)</label>
               <input type="number" name="avgLifeDays" id="hardware-avg-life" value="11" />
             </div>
@@ -74,7 +78,7 @@
       </section>
 
       <section class="section">
-        <div class="section-header"><h2>Devices &amp; Pods</h2></div>
+        <div class="section-header"><h2>Devices, Pods &amp; Tanks</h2></div>
         <div class="row-list panel" id="devices-list"></div>
       </section>
 

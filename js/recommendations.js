@@ -97,13 +97,16 @@ export function recommendHardware(tagWeights, excludeCatalogIds = [], limit = 6)
 }
 
 /**
- * Coils that fit a specific device the user owns, cheapest-first among
- * the ones with the best community rating. Used for "time to replace
- * your coil" prompts and the Discover page.
+ * The consumables that fit a specific device the user owns: standalone
+ * replacement coils (mod/tank setups like the GeekVape L200) AND
+ * built-in-coil pods (pod systems like the Xlim SQ Pro / XROS, where
+ * "changing the coil" means buying a new pod in a given Ω). Sorted by
+ * community rating. Used for the "coils & pods for your devices"
+ * section on Discover.
  */
 export function recommendCoilsForDevice(deviceCatalogId, limit = 3) {
   return HARDWARE_CATALOG
-    .filter((item) => item.category === "coil" && (item.compatibleWith || []).includes(deviceCatalogId))
+    .filter((item) => (item.category === "coil" || item.category === "pod") && (item.compatibleWith || []).includes(deviceCatalogId))
     .sort((a, b) => b.communityRating - a.communityRating)
     .slice(0, limit);
 }

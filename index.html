@@ -1,53 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VapeTrack – Dashboard</title>
-  <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <div id="sidebar-root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VapeTrack – Dashboard</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div id="sidebar-root"></div>
 
-    <main class="main">
-      <div class="main-header">
-        <div>
-          <h1 id="greeting">Good morning 👋</h1>
-          <p>Here's your vape journey at a glance.</p>
+      <main class="main">
+        <div class="main-header">
+          <div>
+            <h1 id="greeting">Good morning 👋</h1>
+            <p>Here's your vape journey at a glance.</p>
+          </div>
         </div>
-      </div>
 
-      <div id="onboarding-banner"></div>
+        <div id="onboarding-banner"></div>
 
-      <section class="section grid grid-4" id="stat-cards"></section>
+        <section class="section grid grid-4" id="stat-cards"></section>
 
-      <section class="section grid" style="grid-template-columns: 1.2fr 1fr 1fr;" id="setup-row">
-        <!-- Current Setup / Coil Tracker / Wishlist preview get filled in by dashboard.js -->
-      </section>
+        <section
+          class="section grid"
+          style="grid-template-columns: 1.2fr 1fr 1fr"
+          id="setup-row"
+        >
+          <!-- Current Setup / Coil Tracker / Wishlist preview get filled in by dashboard.js -->
+        </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2>Recommended for you</h2>
-          <a href="discover.html">View All</a>
-        </div>
-        <div class="grid grid-3" id="discover-cards"></div>
-      </section>
+        <section class="section">
+          <div class="section-header">
+            <h2>Recommended for you</h2>
+            <a href="discover.html">View All</a>
+          </div>
+          <div class="grid grid-3" id="discover-cards"></div>
+        </section>
 
-      <section class="section panel" id="deals-panel">
-        <div class="section-header">
-          <h2>Best Deals For You</h2>
-          <a href="discover.html">View All Deals</a>
-        </div>
-        <div class="row-list" id="deals-list"></div>
-      </section>
-    </main>
-  </div>
+        <section class="section panel" id="deals-panel">
+          <div class="section-header">
+            <h2>Best Deals For You</h2>
+            <a href="discover.html">View All Deals</a>
+          </div>
+          <div class="row-list" id="deals-list"></div>
+        </section>
+      </main>
+    </div>
 
-  <div id="toast-root"></div>
-  <script type="module" src="js/pages/dashboard.js"></script>
-</body>
+    <div id="toast-root"></div>
+    <script type="module" src="js/pages/dashboard.js"></script>
+  </body>
 </html>
