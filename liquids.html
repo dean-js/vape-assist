@@ -23,9 +23,9 @@
       </div>
 
       <section class="section panel" id="add-liquid-panel" style="display:none;">
-        <h2 style="margin-bottom:16px;">Log a liquid</h2>
+        <h2 id="liquid-panel-title" style="margin-bottom:16px;">Log a liquid</h2>
         <form id="add-liquid-form">
-          <div class="field">
+          <div class="field" id="liquid-catalog-field">
             <label>Pick from catalogue (optional)</label>
             <select name="catalogId" id="liquid-catalog-select">
               <option value="">-- Custom liquid --</option>
@@ -63,19 +63,29 @@
               </select>
             </div>
           </div>
+          <div class="grid grid-2">
+            <div class="field">
+              <label>Bottle size (ml)</label>
+              <input type="number" name="bottleSizeMl" id="liquid-bottle-size" placeholder="e.g. 10" min="1" />
+            </div>
+            <div class="field">
+              <label>Bottles owned</label>
+              <input type="number" name="quantity" id="liquid-quantity" value="1" min="0" />
+            </div>
+          </div>
           <div class="field">
             <label>Your rating</label>
             <div class="chip-group" id="rating-chips"></div>
           </div>
           <div class="field">
-            <label><input type="checkbox" name="wouldBuyAgain" style="width:auto;margin-right:8px;" />Would buy again</label>
+            <label><input type="checkbox" name="wouldBuyAgain" id="liquid-would-buy-again" style="width:auto;margin-right:8px;" />Would buy again</label>
           </div>
           <div class="field">
             <label>Notes</label>
-            <textarea name="notes" rows="2"></textarea>
+            <textarea name="notes" id="liquid-notes" rows="2"></textarea>
           </div>
           <div style="display:flex; gap:12px;">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" id="liquid-submit-btn">Save</button>
             <button type="button" class="btn btn-secondary" id="cancel-add-liquid">Cancel</button>
           </div>
         </form>

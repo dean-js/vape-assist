@@ -23,7 +23,7 @@
       </div>
 
       <section class="section panel" id="add-hardware-panel" style="display:none;">
-        <h2 style="margin-bottom:16px;">Add hardware</h2>
+        <h2 id="hardware-panel-title" style="margin-bottom:16px;">Add hardware</h2>
         <form id="add-hardware-form">
           <div class="grid grid-2">
             <div class="field">
@@ -36,7 +36,7 @@
                 <option value="accessory">Accessory</option>
               </select>
             </div>
-            <div class="field">
+            <div class="field" id="hardware-catalog-field">
               <label>Pick from catalogue (optional)</label>
               <select name="catalogId" id="hardware-catalog-select">
                 <option value="">-- Custom item --</option>
@@ -68,10 +68,10 @@
           </div>
           <div class="field">
             <label>Notes</label>
-            <textarea name="notes" rows="2"></textarea>
+            <textarea name="notes" id="hardware-notes" rows="2"></textarea>
           </div>
           <div style="display:flex; gap:12px;">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" id="hardware-submit-btn">Save</button>
             <button type="button" class="btn btn-secondary" id="cancel-add-hardware">Cancel</button>
           </div>
         </form>

@@ -159,8 +159,12 @@ export function daysSince(dateString) {
  * A liquid log entry looks like:
  * {
  *   id, catalogId, name, brand, flavourTags, nicotineMg, vgPg,
- *   remainingPercent, personalRating, wouldBuyAgain, notes, loggedAt
+ *   bottleSizeMl, quantity, remainingPercent, wouldBuyAgain, notes, loggedAt
  * }
+ * bottleSizeMl is the size of ONE bottle (e.g. 10 for a typical nic salt,
+ * 50 for a shortfill). quantity is how many of that bottle you currently
+ * have. remainingPercent tracks how much of the bottle you're currently
+ * using is left, same as before.
  */
 
 export async function getLiquids() {
@@ -173,6 +177,8 @@ export async function addLiquidLog(entry) {
     id: makeId("liq"),
     loggedAt: new Date().toISOString(),
     remainingPercent: 100,
+    quantity: 1,
+    bottleSizeMl: null,
     ...entry,
   };
   all.push(toSave);
