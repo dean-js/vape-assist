@@ -1,0 +1,39 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vape pod cartridge">
+  <defs>
+    <radialGradient id="pod-bg" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#f4f5f7"/>
+      <stop offset="100%" stop-color="#e2e4e9"/>
+    </radialGradient>
+    <linearGradient id="pod-body" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b9c2c8"/>
+      <stop offset="18%" stop-color="#eef3f5"/>
+      <stop offset="45%" stop-color="#9aa6ad"/>
+      <stop offset="70%" stop-color="#eef3f5"/>
+      <stop offset="100%" stop-color="#a7b1b8"/>
+    </linearGradient>
+    <linearGradient id="pod-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7fd0c9"/>
+      <stop offset="100%" stop-color="#4fb2a9"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="96" fill="url(#pod-bg)"/>
+  <ellipse cx="100" cy="172" rx="26" ry="5" fill="#000" opacity="0.08"/>
+
+  <!-- mouthpiece -->
+  <path d="M88 22c4-6 20-6 24 0l4 14H84Z" fill="url(#pod-body)" stroke="#8a949b" stroke-width="1.2"/>
+
+  <!-- pod body: teardrop silhouette -->
+  <path d="M100 36c20 26 36 48 36 70a36 36 0 1 1-72 0c0-22 16-44 36-70Z"
+        fill="url(#pod-body)" stroke="#8a949b" stroke-width="1.5"/>
+
+  <!-- fill window -->
+  <rect x="80" y="96" width="40" height="46" rx="10" fill="url(#pod-liquid)" opacity="0.85"/>
+
+  <!-- contact pins -->
+  <rect x="88" y="158" width="8" height="10" rx="2" fill="#6f7379"/>
+  <rect x="104" y="158" width="8" height="10" rx="2" fill="#6f7379"/>
+
+  <!-- highlight -->
+  <path d="M92 46c-10 16-18 32-18 48" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.5" fill="none"/>
+</svg>

@@ -1,19 +1,26 @@
 /**
  * productIcon.js
  * ---------------------------------------------------------------
- * Small inline-SVG icons for the catalogue, so each product card
- * shows something that actually matches what kind of item it is
- * (a pod system doesn't get shown with a box-mod icon, etc.) These
- * are generic line-art placeholders, not real product photography.
+ * Product imagery for the catalogue. Coils, tanks and pods use the
+ * generic (unbranded) studio-style images in images/category-*.svg
+ * so the Discover page shows an actual picture of that kind of
+ * item rather than a stick-figure icon. Everything else still
+ * falls back to the inline-SVG line art below.
  *
- * To swap in real photos later: give a catalogue item (in
- * data/catalog.js) an `image: "images/xlim-sq-pro.jpg"` field
- * pointing at a picture you have the rights to use, drop the file
- * in an `images/` folder next to index.html, and change
- * renderProductIcon below to return `<img src="${item.image}" ... />`
- * when `item.image` is set, falling back to these icons otherwise.
+ * These category images are deliberately generic — no manufacturer
+ * logos or names on them — since a single image is shared across
+ * every item of that category. To show a specific product's real
+ * photo instead, give that catalogue item (in data/catalog.js) an
+ * `image: "images/xlim-sq-pro.jpg"` field; it takes priority over
+ * the category image below.
  * ---------------------------------------------------------------
  */
+
+const CATEGORY_IMAGES = {
+  tank: "images/category-tank.svg",
+  coil: "images/category-coil.svg",
+  pod: "images/category-pod.svg",
+};
 
 const ICONS = {
   // Pod-system device: rounded body, small mouthpiece
@@ -66,6 +73,12 @@ const ICONS = {
  */
 export function renderProductIcon(item) {
   const key = item.category === "device" ? item.subtype : item.category;
+
+  const imageSrc = item.image || CATEGORY_IMAGES[key];
+  if (imageSrc) {
+    return `<div class="product-thumb"><img src="${imageSrc}" alt="${item.name}" loading="lazy" /></div>`;
+  }
+
   const svg = ICONS[key] || ICONS.accessory;
   return `<div class="product-thumb" aria-hidden="true">${svg}</div>`;
 }
