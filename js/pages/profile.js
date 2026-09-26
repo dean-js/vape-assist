@@ -7,7 +7,7 @@
 
 import { initPage } from "../components/shared.js";
 import { showToast } from "../components/toast.js";
-import { getAccount, clearAccount, getProfile, resetAllData, daysSince } from "../data/store.js";
+import { getAccount, clearAccount, getProfile, saveProfile, resetAllData, daysSince } from "../data/store.js";
 
 async function render() {
   await initPage("profile");
@@ -16,6 +16,7 @@ async function render() {
 
   document.getElementById("account-summary").innerHTML = renderAccount(account);
   document.getElementById("profile-summary").innerHTML = profile ? renderProfile(profile) : renderNoProfile();
+  document.getElementById("tracking-panel").innerHTML = profile ? renderTracking(profile) : "";
 
   document.getElementById("logout-btn").addEventListener("click", async () => {
     await clearAccount();
@@ -28,6 +29,49 @@ async function render() {
     await resetAllData();
     showToast("All data cleared");
     window.location.href = "login.html";
+  });
+
+  wireTrackingForm(profile);
+}
+
+/** YYYY-MM-DD for a <input type="date">, from a profile's ISO startDate. */
+function toDateInputValue(isoString) {
+  return (isoString || new Date().toISOString()).slice(0, 10);
+}
+
+function renderTracking(profile) {
+  return `
+    <h2 style="margin-bottom:4px;">Smoke-free tracking</h2>
+    <p class="text-secondary" style="font-size:13px;margin-bottom:16px;">
+      Your "Smoke Free" count on the dashboard is based on this date. Fix it if it's wrong, or reset it if you had a slip and want to start the count again.
+    </p>
+    <form id="tracking-form" style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+      <div class="field" style="margin:0;">
+        <label for="tracking-start-date">Smoke-free since</label>
+        <input type="date" id="tracking-start-date" max="${toDateInputValue(new Date().toISOString())}" value="${toDateInputValue(profile.startDate)}" />
+      </div>
+      <button type="submit" class="btn btn-primary">Save date</button>
+      <button type="button" class="btn btn-secondary" id="reset-counter-btn">Reset counter to today</button>
+    </form>`;
+}
+
+function wireTrackingForm(profile) {
+  document.getElementById("tracking-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const value = document.getElementById("tracking-start-date").value;
+    if (!value) return;
+    const startDate = new Date(`${value}T00:00:00`).toISOString();
+    await saveProfile({ ...profile, startDate });
+    showToast("Smoke-free date updated");
+    render();
+  });
+
+  document.getElementById("reset-counter-btn")?.addEventListener("click", async () => {
+    const confirmed = window.confirm("Reset your smoke-free counter to start again from today?");
+    if (!confirmed) return;
+    await saveProfile({ ...profile, startDate: new Date().toISOString() });
+    showToast("Counter reset - starting from today");
+    render();
   });
 }
 

@@ -71,6 +71,7 @@ function renderStatCards(profile, hardware, liquids) {
       label: "Smoke Free",
       value: profile ? `${daysTracked} Days` : "—",
       sub: profile ? "Since you completed onboarding" : "Complete the quiz to start tracking",
+      action: profile ? { href: "profile.html#tracking-panel", label: "Edit date / reset counter" } : null,
     }),
     renderStatCard({
       icon: "💰",

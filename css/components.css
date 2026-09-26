@@ -143,6 +143,13 @@
   overflow-wrap: break-word;
 }
 
+.stat-card .stat-action {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: 12px;
+  color: var(--color-accent-soft);
+}
+
 .stat-card .stat-sub {
   color: var(--text-muted);
   font-size: 12px;

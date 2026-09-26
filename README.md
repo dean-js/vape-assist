@@ -17,6 +17,9 @@ A short quiz on smoking history, nicotine preference, flavour interests, device 
 **Dashboard**
 Smoke-free days, estimated money saved, current device/pod/liquid at a glance, a live coil-age progress ring, wishlist preview, personalised recommendations, and a best-deals list.
 
+**Profile**
+Account details, quiz answers, and smoke-free date tracking - fix the start date if it's wrong or reset the counter to today after a slip, without wiping your other data. Also where you retake the quiz or reset everything.
+
 **My Hardware**
 Log devices, pods, coils and accessories. Coils show days used vs. average life, colour-coded (ok / warning / overdue), with one-click "replace" that retires the old coil and logs a fresh one.
 
