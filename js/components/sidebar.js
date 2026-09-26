@@ -50,7 +50,7 @@ export function renderSidebar(activePageId, account) {
     <aside class="sidebar">
       <div class="sidebar-brand">
         <span class="logo">◆</span>
-        <span>VapeTrack</span>
+        <span>Vape Assist</span>
       </div>
       <nav class="sidebar-nav">
         <ul>${links}</ul>

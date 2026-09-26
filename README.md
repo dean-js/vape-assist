@@ -1,4 +1,4 @@
-# VapeTrack
+# Vape Assist
 
 A dashboard app for people switching from smoking to vaping: track your hardware and e-liquids, log what you like and don't, keep an eye on coil age, and get rule-based recommendations for what to try next, including UK retailer price comparisons.
 

@@ -76,7 +76,7 @@ export function renderOnboardingBanner(profile) {
     <div class="banner">
       <div>
         <h3 style="margin-bottom:4px;">Get personalised recommendations</h3>
-        <p class="text-secondary" style="font-size:13px;">Answer a short quiz about your smoking history and taste so VapeTrack can suggest a starter setup.</p>
+        <p class="text-secondary" style="font-size:13px;">Answer a short quiz about your smoking history and taste so Vape Assist can suggest a starter setup.</p>
       </div>
       <a href="onboarding.html" class="btn btn-primary">Take the quiz</a>
     </div>`;
