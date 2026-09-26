@@ -2,7 +2,9 @@
 
 A dashboard app for people switching from smoking to vaping: track your hardware and e-liquids, log what you like and don't, keep an eye on coil age, and get rule-based recommendations for what to try next, including UK retailer price comparisons.
 
-**Status:** early prototype (v0.2.0). Frontend only, no backend yet. All data is stored locally in your browser.
+**Status:** early prototype (v0.3.0). Frontend only, no backend yet. All data is stored locally in your browser.
+
+See [BRANDING.md](BRANDING.md) for the name, logo, colour palette and voice guidelines.
 
 ---
 
@@ -40,6 +42,15 @@ Rule-based, no AI: scores catalogue items by how many tags they share with your 
 ---
 
 ## Updates
+
+### v0.3.0
+- Renamed the app from VapeTrack to **Vape Assist** everywhere (titles, sidebar, login, README) and added a proper brand kit ([BRANDING.md](BRANDING.md)) with a real two-tone SVG logo mark replacing the old text-glyph diamond
+- Added smoke-free date editing and a "reset counter to today" button on the Profile page, so you can fix an incorrect start date or restart the count after a slip without wiping your whole account
+- Fixed the mobile layout: the sidebar now actually collapses into a compact top bar with a dropdown menu below ~860px width, instead of stacking a full-height nav above the page content
+- Fixed the hardware/liquid catalogue dropdowns showing duplicated brand names (e.g. "OXVA OXVA Xlim SQ Pro")
+- Fixed stat cards with longer text values (e.g. "Favourite Category: Not enough data") blowing out of proportion with the rest of the row
+- Fixed empty-state messages (Wishlist, Discover) rendering squashed into a single grid column instead of centred
+- Cleaned up the dashboard's "Current Setup" card so it doesn't show three redundant "Not set" rows alongside the "nothing logged yet" message
 
 ### v0.2.0
 - Added local placeholder accounts (`login.html`): name + email sign-up, gates the whole app, "Continue with Google" UI in place ahead of real OAuth

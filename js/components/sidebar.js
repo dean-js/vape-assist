@@ -49,7 +49,12 @@ export function renderSidebar(activePageId, account) {
   return `
     <aside class="sidebar">
       <div class="sidebar-brand">
-        <span class="logo">◆</span>
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1.5L21 12L12 22.5L3 12L12 1.5Z" fill="var(--color-accent)" />
+            <path d="M12 1.5L21 12L12 22.5V1.5Z" fill="var(--color-accent-soft)" />
+          </svg>
+        </span>
         <span>Vape Assist</span>
       </div>
       <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle menu">☰</button>

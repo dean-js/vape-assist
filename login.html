@@ -31,7 +31,8 @@
       font-size: 20px;
       margin-bottom: var(--space-2);
     }
-    .login-brand span.logo { color: var(--color-accent); }
+    .login-brand .logo { display: flex; width: 24px; height: 24px; }
+    .login-brand .logo svg { width: 100%; height: 100%; }
     .login-sub {
       text-align: center;
       color: var(--text-secondary);
@@ -62,7 +63,15 @@
 </head>
 <body class="login-body">
   <div class="panel login-card">
-    <div class="login-brand"><span class="logo">◆</span><span>Vape Assist</span></div>
+    <div class="login-brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1.5L21 12L12 22.5L3 12L12 1.5Z" fill="var(--color-accent)" />
+          <path d="M12 1.5L21 12L12 22.5V1.5Z" fill="var(--color-accent-soft)" />
+        </svg>
+      </span>
+      <span>Vape Assist</span>
+    </div>
     <p class="login-sub">Track your switch from smoking to vaping.</p>
 
     <button type="button" class="btn btn-google btn-full" id="google-btn">

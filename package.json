@@ -1,6 +1,6 @@
 {
   "name": "vape-assist",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Smoking-to-vaping transition dashboard - track hardware and liquids, get rule-based recommendations, compare UK retailer prices.",
   "private": true,
   "scripts": {
