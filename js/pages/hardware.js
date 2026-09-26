@@ -5,7 +5,7 @@
  * details after the fact instead of only add/remove.
  */
 
-import { initPage } from "../components/shared.js";
+import { initPage, catalogOptionLabel } from "../components/shared.js";
 import { showToast } from "../components/toast.js";
 import { HARDWARE_CATALOG } from "../data/catalog.js";
 import { getHardware, addHardwareItem, updateHardwareItem, removeHardwareItem, replaceCoil } from "../data/store.js";
@@ -32,7 +32,7 @@ function refreshCatalogOptionsForType() {
 
   catalogSelect.innerHTML =
     `<option value="">-- Custom item --</option>` +
-    matches.map((item) => `<option value="${item.id}">${item.brand} ${item.name}</option>`).join("");
+    matches.map((item) => `<option value="${item.id}">${catalogOptionLabel(item)}</option>`).join("");
 
   document.getElementById("resistance-field").style.display = OHM_AWARE_TYPES.includes(type) ? "grid" : "none";
   document.getElementById("avg-life-field").style.display = type === "coil" ? "block" : "none";

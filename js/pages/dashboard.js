@@ -116,14 +116,19 @@ async function renderSetupRow(hardware, liquids, wishlist) {
   const currentLiquid = [...liquids].sort((a, b) => new Date(b.loggedAt) - new Date(a.loggedAt))[0];
   const coilStatuses = getCoilStatuses(hardware);
   const primaryCoil = coilStatuses[0];
+  const hasSetup = currentDevice || currentPod || currentLiquid;
 
   el.innerHTML = `
     <div class="panel">
       <div class="section-header"><h2>Current Setup</h2><a href="hardware.html">Edit</a></div>
-      ${renderSetupRowItem("Device", currentDevice?.name, currentDevice?.brand)}
-      ${renderSetupRowItem("Pod / Tank", currentPod?.name, currentPod?.brand)}
-      ${renderSetupRowItem("Liquid", currentLiquid?.name, currentLiquid ? `${currentLiquid.remainingPercent}% remaining` : null)}
-      ${!currentDevice && !currentLiquid ? `<p class="empty-state">Nothing logged yet. <a href="hardware.html" style="color:var(--color-accent-soft);">Log your hardware</a> to get started.</p>` : ""}
+      ${
+        hasSetup
+          ? `
+        ${renderSetupRowItem("Device", currentDevice?.name, currentDevice?.brand)}
+        ${renderSetupRowItem("Pod / Tank", currentPod?.name, currentPod?.brand)}
+        ${renderSetupRowItem("Liquid", currentLiquid?.name, currentLiquid ? `${currentLiquid.remainingPercent}% remaining` : null)}`
+          : `<p class="empty-state">Nothing logged yet. <a href="hardware.html" style="color:var(--color-accent-soft);">Log your hardware</a> to get started.</p>`
+      }
     </div>
 
     <div class="panel">

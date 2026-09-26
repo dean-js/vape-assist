@@ -58,6 +58,58 @@
   border-top: 1px solid var(--border-color);
 }
 
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 20px;
+  line-height: 1;
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+/* Collapses the sidebar into a compact top bar with a dropdown menu on
+   small / mobile screens, instead of stacking the full-height nav above
+   the page content. */
+@media (max-width: 860px) {
+  .sidebar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-nav,
+  .sidebar-footer {
+    flex-basis: 100%;
+  }
+
+  .sidebar:not(.nav-open) .sidebar-nav,
+  .sidebar:not(.nav-open) .sidebar-footer {
+    display: none;
+  }
+
+  .sidebar.nav-open .sidebar-nav {
+    margin-top: var(--space-4);
+  }
+
+  .sidebar-footer {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+  }
+}
+
 /* ---------- Cards / panels ---------- */
 
 .panel {
@@ -85,8 +137,10 @@
 }
 
 .stat-card .stat-value {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: break-word;
 }
 
 .stat-card .stat-sub {
@@ -307,6 +361,7 @@
 }
 
 .empty-state {
+  grid-column: 1 / -1;
   text-align: center;
   padding: var(--space-8) var(--space-4);
   color: var(--text-secondary);

@@ -52,6 +52,7 @@ export function renderSidebar(activePageId, account) {
         <span class="logo">◆</span>
         <span>Vape Assist</span>
       </div>
+      <button type="button" class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle menu">☰</button>
       <nav class="sidebar-nav">
         <ul>${links}</ul>
       </nav>
@@ -79,6 +80,12 @@ export function renderSidebar(activePageId, account) {
 export function mountSidebar(activePageId, account) {
   const root = document.getElementById("sidebar-root");
   if (root) root.outerHTML = renderSidebar(activePageId, account);
+
+  // On mobile the nav/footer collapse behind this toggle - see the
+  // ".sidebar.nav-open" rules in components.css.
+  document.getElementById("sidebar-toggle")?.addEventListener("click", () => {
+    document.querySelector(".sidebar")?.classList.toggle("nav-open");
+  });
 
   document.getElementById("sidebar-logout")?.addEventListener("click", async (event) => {
     event.preventDefault();

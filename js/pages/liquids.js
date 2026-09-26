@@ -6,7 +6,7 @@
  * existing entry rather than only add/remove.
  */
 
-import { initPage } from "../components/shared.js";
+import { initPage, catalogOptionLabel } from "../components/shared.js";
 import { showToast } from "../components/toast.js";
 import { LIQUID_CATALOG } from "../data/catalog.js";
 import { getLiquids, addLiquidLog, updateLiquidLog, removeLiquidLog, rateLiquid, getPersonalRatings } from "../data/store.js";
@@ -45,7 +45,7 @@ function populateCatalogSelect() {
   const select = document.getElementById("liquid-catalog-select");
   select.innerHTML =
     `<option value="">-- Custom liquid --</option>` +
-    LIQUID_CATALOG.map((item) => `<option value="${item.id}">${item.brand} ${item.name}</option>`).join("");
+    LIQUID_CATALOG.map((item) => `<option value="${item.id}">${catalogOptionLabel(item)}</option>`).join("");
 
   select.addEventListener("change", () => {
     const item = LIQUID_CATALOG.find((l) => l.id === select.value);

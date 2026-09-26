@@ -69,6 +69,18 @@ export function wireWishlistButtons(onChange) {
   });
 }
 
+/**
+ * Label for a catalogue item in a <select> dropdown. Most hardware
+ * names already start with the brand (e.g. "OXVA Xlim SQ Pro"), so
+ * prefixing the brand again would read "OXVA OXVA Xlim SQ Pro" -
+ * only prefix it when the name doesn't already include it.
+ */
+export function catalogOptionLabel(item) {
+  const name = item.name || "";
+  const brand = item.brand || "";
+  return brand && !name.toLowerCase().startsWith(brand.toLowerCase()) ? `${brand} ${name}` : name;
+}
+
 /** Renders a "complete your quiz" banner for pages where onboarding is optional but encouraged. */
 export function renderOnboardingBanner(profile) {
   if (profile && profile.completedQuiz) return "";
